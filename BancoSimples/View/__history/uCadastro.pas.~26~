@@ -1,0 +1,84 @@
+unit uCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  uContaBancaria, uDM, Vcl.ExtCtrls;
+
+type
+  TfrmCadastro = class(TForm)
+    lblTitularConta: TLabel;
+    edtNomeTitular: TEdit;
+    btnCriarConta: TButton;
+    lblMensagemNome: TLabel;
+    edtCPF: TEdit;
+    lblCPF: TLabel;
+    lblTitulo: TLabel;
+    btnVoltar: TButton;
+    pnlPrincipal: TPanel;
+    lblMensagemCPF: TLabel;
+    procedure btnCriarContaClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+  private
+  public
+  end;
+
+var
+  frmCadastro: TfrmCadastro;
+
+implementation
+
+uses
+  uTelaInicial, uLogin;
+
+{$R *.dfm}
+
+procedure TfrmCadastro.btnCriarContaClick(Sender: TObject);
+var
+  Conta: TContaBancaria;
+begin
+  if edtNomeTitular.Text = '' then
+  begin
+    lblMensagemNome.Caption := 'Informe o nome do titular.';
+    Exit;
+  end;
+
+  if edtCPF.Text = '' then
+  begin
+    lblMensagemCPF.Caption := 'Informe o CPF.';
+    Exit;
+  end;
+
+  try
+    Conta := DM.Banco.CriarConta(edtNomeTitular.Text, edtCPF.Text);
+
+
+  ShowMessage(
+      'Conta criada com sucesso!' + sLineBreak +
+      'Titular: ' + Conta.Titular + sLineBreak +
+      'CPF: ' + Conta.CPF + sLineBreak +
+      'Número da conta: ' + Conta.NumeroConta
+    );
+
+    frmTelaInicial.DefinirFormLogin(frmLogin);
+    frmTelaInicial.DefinirConta(Conta);
+
+    frmTelaInicial.Show;
+    Self.Hide;
+
+  except
+    on E: Exception do
+      lblMensagemNome.Caption := E.Message;
+  end;
+end;
+
+procedure TfrmCadastro.btnVoltarClick(Sender: TObject);
+begin
+  frmLogin.Show;
+  Self.Hide;
+end;
+
+end.
+

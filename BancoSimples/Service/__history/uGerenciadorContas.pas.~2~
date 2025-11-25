@@ -1,0 +1,77 @@
+unit uGerenciadorContas;
+
+interface
+
+uses
+  System.Generics.Collections, uContaBancaria, uDM;
+
+type
+  TGerenciadorContas = class
+  private
+    FContas: TObjectList<TContaBancaria>;
+    FUltimoNumero: Integer;
+
+    function ExisteCPF(const ACPF: string): Boolean;
+  public
+    constructor Create;
+    destructor Destroy; override;
+
+    function CriarConta(const ATitular, ACPF: string): TContaBancaria;
+    function LoginConta(const ANumeroConta: string): TContaBancaria;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+constructor TGerenciadorContas.Create;
+begin
+  FContas := TObjectList<TContaBancaria>.Create(True);
+  FUltimoNumero := 0;
+end;
+
+destructor TGerenciadorContas.Destroy;
+begin
+  FContas.Free;
+  inherited;
+end;
+
+function TGerenciadorContas.ExisteCPF(const ACPF: string): Boolean;
+var
+  Conta: TContaBancaria;
+begin
+  Result := False;
+  for Conta in FContas do
+    if Conta.CPF = ACPF then
+      Exit(True);
+end;
+
+function TGerenciadorContas.CriarConta(const ATitular, ACPF: string): TContaBancaria;
+begin
+  if ExisteCPF(ACPF) then
+    raise Exception.Create('CPF já cadastrado!');
+
+  Inc(FUltimoNumero);
+
+  Result := TContaBancaria.Create;
+  Result.Titular := ATitular;
+  Result.CPF     := ACPF;
+  Result.FNumeroConta := FormatFloat('0000', FUltimoNumero);
+  Result.FSaldo  := 0;
+
+  FContas.Add(Result);
+end;
+
+function TGerenciadorContas.LoginConta(const ANumeroConta: string): TContaBancaria;
+var
+  Conta: TContaBancaria;
+begin
+  Result := nil;
+
+  for Conta in FContas do
+    if Conta.NumeroConta = ANumeroConta then
+      Exit(Conta);
+end;
+
+end.

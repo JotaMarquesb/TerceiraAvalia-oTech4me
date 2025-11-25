@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/11/19 19:55:38.000.421,=C:\Repositórios\Delphi\Unit1.pas</Transaction>
+    <Transaction>2025/11/19 19:56:12.000.353,C:\Repositórios\Delphi\Unit1.pas=C:\Repositórios\Avaliação_2\uPrincipal.pas</Transaction>
+    <Transaction>2025/11/19 19:56:12.000.353,C:\Repositórios\Delphi\Unit1.dfm=C:\Repositórios\Avaliação_2\uPrincipal.dfm</Transaction>
+    <Transaction>2025/11/19 19:56:28.000.391,C:\Repositórios\Delphi\Project2.dproj=C:\Repositórios\Avaliação_2\BancoSimples.dproj</Transaction>
+    <Transaction>2025/11/19 20:04:25.000.071,C:\Repositórios\Avaliação_2\uPrincipal.dfm=C:\Repositórios\Avaliação_2\View\uPrincipal.dfm</Transaction>
+    <Transaction>2025/11/19 20:04:25.000.071,C:\Repositórios\Avaliação_2\uPrincipal.pas=C:\Repositórios\Avaliação_2\View\uPrincipal.pas</Transaction>
+    <Transaction>2025/11/19 20:05:32.000.648,=C:\Repositórios\Avaliação_2\Unit1.pas</Transaction>
+    <Transaction>2025/11/19 20:06:13.000.916,C:\Repositórios\Avaliação_2\Unit1.pas=C:\Repositórios\Avaliação_2\Model\uContaBancaria.pas</Transaction>
+    <Transaction>2025/11/19 20:07:27.000.110,=C:\Repositórios\Avaliação_2\Unit1.pas</Transaction>
+    <Transaction>2025/11/19 20:07:48.000.218,C:\Repositórios\Avaliação_2\Unit1.pas=C:\Repositórios\Avaliação_2\Controller\uContaController.pas</Transaction>
+    <Transaction>2025/11/19 20:21:28.000.336,=C:\Repositórios\Avaliação_2\Unit1.pas</Transaction>
+    <Transaction>2025/11/19 20:21:47.000.629,C:\Repositórios\Avaliação_2\Unit1.pas=C:\Repositórios\Avaliação_2\Controller\uBancoController.pas</Transaction>
+    <Transaction>2025/11/19 20:22:34.000.318,C:\Repositórios\Avaliação_2\View\uPrincipal.pas=C:\Repositórios\Avaliação_2\View\uLogin.pas</Transaction>
+    <Transaction>2025/11/19 20:22:34.000.318,C:\Repositórios\Avaliação_2\View\uPrincipal.dfm=C:\Repositórios\Avaliação_2\View\uLogin.dfm</Transaction>
+    <Transaction>2025/11/19 20:22:47.000.662,=C:\Repositórios\Avaliação_2\Unit2.pas</Transaction>
+    <Transaction>2025/11/19 20:22:58.000.188,C:\Repositórios\Avaliação_2\Unit2.pas=C:\Repositórios\Avaliação_2\View\uCadastro.pas</Transaction>
+    <Transaction>2025/11/19 20:22:58.000.188,C:\Repositórios\Avaliação_2\Unit2.dfm=C:\Repositórios\Avaliação_2\View\uCadastro.dfm</Transaction>
+    <Transaction>2025/11/19 20:23:04.000.798,=C:\Repositórios\Avaliação_2\Unit3.pas</Transaction>
+    <Transaction>2025/11/19 20:23:19.000.328,C:\Repositórios\Avaliação_2\Unit3.dfm=C:\Repositórios\Avaliação_2\View\uTelaInicial.dfm</Transaction>
+    <Transaction>2025/11/19 20:23:19.000.328,C:\Repositórios\Avaliação_2\Unit3.pas=C:\Repositórios\Avaliação_2\View\uTelaInicial.pas</Transaction>
+    <Transaction>2025/11/23 16:14:24.000.301,=C:\Repositórios\Avaliação_2\Unit1.pas</Transaction>
+    <Transaction>2025/11/23 16:16:46.000.593,C:\Repositórios\Avaliação_2\DM\uDM.pas=C:\Repositórios\Avaliação_2\Unit1.pas</Transaction>
+    <Transaction>2025/11/23 16:16:46.000.593,C:\Repositórios\Avaliação_2\DM\uDM.dfm=C:\Repositórios\Avaliação_2\Unit1.dfm</Transaction>
+    <Transaction>2025/11/23 16:37:02.000.703,=C:\Repositórios\Avaliação_2\Unit1.pas</Transaction>
+    <Transaction>2025/11/23 16:37:35.000.026,C:\Repositórios\Avaliação_2\Unit1.pas=C:\Repositórios\Avaliação_2\Service\uGerenciadorContas.pas</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="DM"/>
+    <File Path="DM\uDM.pas"/>
+    <File Path="DM\uDM.dfm"/>
+    <File Path="Model"/>
+    <File Path="Model\uContaBancaria.pas"/>
+    <File Path="Service"/>
+    <File Path="Service\uGerenciadorContas.pas"/>
+    <File Path="View"/>
+    <File Path="View\uLogin.pas"/>
+    <File Path="View\uLogin.dfm"/>
+    <File Path="View\uCadastro.pas"/>
+    <File Path="View\uCadastro.dfm"/>
+    <File Path="View\uTelaInicial.pas"/>
+    <File Path="View\uTelaInicial.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

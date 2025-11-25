@@ -1,0 +1,55 @@
+﻿unit uContaBancaria;
+
+interface
+
+type
+  TContaBancaria = class
+  private
+    FNumeroConta: string;
+    FTitular: string;
+    FCPF: string;
+    FSaldo: Double;
+  public
+    constructor Create(const ANumeroConta, ATitular: string, ACPF: string);
+
+    procedure Depositar(AValor: Double);
+    function Sacar(AValor: Double): Boolean;
+    function ExibirSaldo: Double;
+
+    property NumeroConta: string read FNumeroConta;
+    property Titular: string read FTitular;
+    property CPF: string read FCPF write FCPF;
+    property Saldo: Double read FSaldo;
+  end;
+
+implementation
+
+constructor TContaBancaria.Create(const ANumeroConta, ATitular: string);
+begin
+  FNumeroConta := ANumeroConta;
+  FTitular := ATitular;
+  FSaldo := 0.00;  // conforme requisito
+end;
+
+procedure TContaBancaria.Depositar(AValor: Double);
+begin
+  FSaldo := FSaldo + AValor;
+end;
+
+function TContaBancaria.Sacar(AValor: Double): Boolean;
+begin
+  Result := False;
+
+  if (AValor > 0) and (AValor <= FSaldo) then
+  begin
+    FSaldo := FSaldo - AValor;
+    Result := True;
+  end;
+end;
+
+function TContaBancaria.ExibirSaldo: Double;
+begin
+  Result := FSaldo;
+end;
+
+end.

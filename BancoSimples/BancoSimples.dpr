@@ -1,0 +1,22 @@
+program BancoSimples;
+
+uses
+  Vcl.Forms,
+  uLogin in 'View\uLogin.pas' {frmLogin},
+  uContaBancaria in 'Model\uContaBancaria.pas',
+  uCadastro in 'View\uCadastro.pas' {frmCadastro},
+  uTelaInicial in 'View\uTelaInicial.pas' {frmTelaInicial},
+  uDM in 'DM\uDM.pas' {DM: TDataModule},
+  uGerenciadorContas in 'Service\uGerenciadorContas.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDM, DM);
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmTelaInicial, frmTelaInicial);
+  Application.CreateForm(TfrmCadastro, frmCadastro);
+  Application.Run;
+end.

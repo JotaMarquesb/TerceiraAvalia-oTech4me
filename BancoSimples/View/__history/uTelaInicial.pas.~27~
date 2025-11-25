@@ -1,0 +1,122 @@
+unit uTelaInicial;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  uContaBancaria, uDM, Vcl.ExtCtrls;
+
+type
+  TfrmTelaInicial = class(TForm)
+    lblSaudacao: TLabel;
+    edtValor: TEdit;
+    btnDepositar: TButton;
+    btnSacar: TButton;
+    btnSaldo: TButton;
+    lblMensagem: TLabel;
+    pnlSaudacao: TPanel;
+    lblNumeroConta: TLabel;
+    lblSaldo: TLabel;
+    lblValor: TLabel;
+    lblConferirSaldo: TLabel;
+    lblOperacao: TLabel;
+    btnSair: TButton;
+    lblSair: TLabel;
+    procedure btnDepositarClick(Sender: TObject);
+    procedure btnSacarClick(Sender: TObject);
+    procedure btnSaldoClick(Sender: TObject);
+    procedure DefinirConta(AConta: TContaBancaria);
+    procedure btnSairClick(Sender: TObject);
+  private
+    { Private declarations }
+    FConta: TContaBancaria;
+    FFormLogin: TForm;
+  public
+    { Public declarations }
+    procedure DefinirFormLogin(AForm: TForm);
+  end;
+
+var
+  frmTelaInicial: TfrmTelaInicial;
+
+implementation
+
+uses
+  uLogin;
+
+{$R *.dfm}
+
+procedure TfrmTelaInicial.DefinirConta(AConta: TContaBancaria);
+begin
+  FConta := AConta;
+  lblSaudacao.Caption :=
+    'Olá ' + FConta.Titular + '. Seja bem vindo!';
+  lblNumeroConta.Caption :=
+    'Número da conta: '+FConta.NumeroConta +'.';
+  lblSaldo.Caption :=
+    'Saldo: R$ ' +
+    FormatFloat('0.00', FConta.Saldo);
+end;
+
+procedure TfrmTelaInicial.btnDepositarClick(Sender: TObject);
+var
+  ValorDeposito: Double;
+  Mensagem: string;
+
+begin
+  ValorDeposito := StrToFloatDef(edtValor.Text, -1);
+
+  if ValorDeposito <= 0 then
+  begin
+    lblMensagem.Caption := 'Valor inválido.';
+    Exit;
+  end;
+
+  FConta.Depositar(ValorDeposito);
+
+  Mensagem := 'Você depositou o valor de ' + FormatFloat('R$ #,##0.00', ValorDeposito) + '.';
+  ShowMessage(Mensagem);
+  DefinirConta(FConta);
+  edtValor.Text := '';
+end;
+
+procedure TfrmTelaInicial.btnSacarClick(Sender: TObject);
+var
+  ValorSaque: Double;
+  Mensagem: string;
+
+begin
+  ValorSaque := StrToFloatDef(edtValor.Text, -1);
+
+  if not FConta.Sacar(ValorSaque) then
+  begin
+    lblMensagem.Caption := 'Valor inválido ou saldo insuficiente.';
+    Exit;
+  end;
+
+  Mensagem := 'Você sacou o valor de ' + FormatFloat('R$ #,##0.00', ValorSaque) + '.';
+
+  ShowMessage(Mensagem);
+  DefinirConta(FConta);
+  edtValor.Text := '';
+end;
+
+procedure TfrmTelaInicial.btnSaldoClick(Sender: TObject);
+begin
+  lblMensagem.Caption := 'Saldo atual: R$ ' +
+    FormatFloat('0.00', FConta.Saldo);
+end;
+
+procedure TfrmTelaInicial.DefinirFormLogin(AForm: TForm);
+begin
+  FFormLogin := AForm;
+end;
+
+procedure TfrmTelaInicial.btnSairClick(Sender: TObject);
+begin
+  Self.Hide;
+  FFormLogin.Show;
+end;
+
+end.

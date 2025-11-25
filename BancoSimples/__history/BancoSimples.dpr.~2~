@@ -1,0 +1,19 @@
+program BancoSimples;
+
+uses
+  Vcl.Forms,
+  uLogin in 'View\uLogin.pas' {fmrLogin},
+  uContaBancaria in 'Model\uContaBancaria.pas',
+  uContaController in 'Controller\uContaController.pas',
+  uBancoController in 'Controller\uBancoController.pas',
+  uCadastro in 'View\uCadastro.pas' {Form2},
+  uTelaInicial in 'View\uTelaInicial.pas' {Form3};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfmrLogin, fmrLogin);
+  Application.Run;
+end.

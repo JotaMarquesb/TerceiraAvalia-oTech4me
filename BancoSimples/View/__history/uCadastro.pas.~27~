@@ -1,0 +1,121 @@
+﻿unit uCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  uContaBancaria, uDM, Vcl.ExtCtrls;
+
+type
+  TfrmCadastro = class(TForm)
+    lblTitularConta: TLabel;
+    edtNomeTitular: TEdit;
+    btnCriarConta: TButton;
+    lblMensagemNome: TLabel;
+    edtCPF: TEdit;
+    lblCPF: TLabel;
+    lblTitulo: TLabel;
+    btnVoltar: TButton;
+    pnlPrincipal: TPanel;
+    lblMensagemCPF: TLabel;
+    procedure btnCriarContaClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+  private
+    function ValidarCamposObrigatorios: Boolean;
+  public
+  end;
+
+var
+  frmCadastro: TfrmCadastro;
+
+implementation
+
+uses
+  uTelaInicial, uLogin;
+
+{$R *.dfm}
+
+procedure TfrmCadastro.btnCriarContaClick(Sender: TObject);
+var
+  Conta: TContaBancaria;
+  Mensagem: string;
+begin
+  // 1. Validação da Interface (usando a função que atualiza os Labels)
+  if not ValidarCamposObrigatorios then
+    Exit; // Se a validação falhar, sai da procedure
+
+  // 2. Lógica de Negócio e Tratamento de Exceção
+  try
+    // Garante que o label de erro geral também esteja limpo antes da operação
+    lblMensagemNome.Caption := '';
+
+    // Tenta criar a conta (aqui podem ocorrer exceções de negócio/banco)
+    Conta := DM.Banco.CriarConta(edtNomeTitular.Text, edtCPF.Text);
+
+    // 3. SE SUCESSO: Feedback e Navegação
+    Mensagem := 'Conta criada com sucesso!' + sLineBreak +
+                'Titular: ' + Conta.Titular + sLineBreak +
+                'CPF: ' + Conta.CPF + sLineBreak +
+                'Número da conta: ' + Conta.NumeroConta;
+
+    ShowMessage(Mensagem); // Usa ShowMessage para feedback final
+
+    // ... Navegação para a próxima tela ...
+    frmTelaInicial.DefinirFormLogin(frmLogin);
+    frmTelaInicial.DefinirConta(Conta);
+
+    frmTelaInicial.Show;
+    Self.Hide;
+
+  except
+    on E: Exception do
+    begin
+      // 4. TRATAMENTO DE ERRO DE NEGÓCIO (Ex: CPF já existe)
+      // Usamos um Label ou MessageDlg para exibir o erro do Service
+      ShowMessage('Falha na criação da conta: ' + E.Message);
+      // Ou, se preferir usar um Label central para erros de negócio:
+      // lblMensagemNome.Caption := '❌ Erro: ' + E.Message;
+      edtNomeTitular.SetFocus;
+    end;
+  end;
+end;
+
+function TfrmCadastro.ValidarCamposObrigatorios: Boolean;
+begin
+  // 1. Limpa todas as mensagens de erro antes de validar
+  lblMensagemNome.Caption := '';
+  lblMensagemCPF.Caption := '';
+
+  // 2. Validação do Nome do Titular
+  if Trim(edtNomeTitular.Text) = '' then
+  begin
+    // Exibe a mensagem no Label correspondente
+    lblMensagemNome.Caption := 'Informe o nome do titular.';
+    edtNomeTitular.SetFocus;
+    Result := False; // Falha na validação
+    Exit;
+  end;
+
+  // 3. Validação do CPF
+  if Trim(edtCPF.Text) = '' then
+  begin
+    // Exibe a mensagem no Label correspondente
+    lblMensagemCPF.Caption := 'Informe o CPF.';
+    edtCPF.SetFocus;
+    Result := False; // Falha na validação
+    Exit;
+  end;
+
+  // 4. Sucesso na validação de interface
+  Result := True;
+end;
+
+procedure TfrmCadastro.btnVoltarClick(Sender: TObject);
+begin
+  frmLogin.Show;
+  Self.Hide;
+end;
+
+end.
+

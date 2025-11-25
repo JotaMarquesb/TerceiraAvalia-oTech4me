@@ -1,0 +1,80 @@
+object frmLogin: TfrmLogin
+  Left = 0
+  Top = 0
+  Caption = 'Banco 4You'
+  ClientHeight = 401
+  ClientWidth = 320
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poScreenCenter
+  OnShow = FormShow
+  TextHeight = 15
+  object pnlSuperior: TPanel
+    Left = 0
+    Top = 0
+    Width = 320
+    Height = 41
+    Align = alTop
+    Caption = 'Banco 4you'
+    TabOrder = 0
+  end
+  object pnlInferior: TPanel
+    Left = 0
+    Top = 41
+    Width = 320
+    Height = 360
+    Align = alClient
+    TabOrder = 1
+    object lblCadastrar: TLabel
+      Left = 102
+      Top = 172
+      Width = 117
+      Height = 15
+      Caption = 'Ainda n'#227'o sou cliente:'
+    end
+    object lblMensagem: TLabel
+      Left = 102
+      Top = 89
+      Width = 3
+      Height = 15
+    end
+    object lblNumeroConta: TLabel
+      Left = 102
+      Top = 39
+      Width = 96
+      Height = 15
+      Caption = 'N'#250'mero da conta:'
+    end
+    object btnAcessar: TButton
+      Left = 102
+      Top = 119
+      Width = 121
+      Height = 25
+      Caption = 'Acessar'
+      TabOrder = 1
+      OnClick = btnAcessarClick
+    end
+    object btnCadastrar: TButton
+      Left = 102
+      Top = 196
+      Width = 121
+      Height = 25
+      Caption = 'Abrir conta'
+      TabOrder = 2
+      OnClick = btnCadastrarClick
+    end
+    object edtNumeroConta: TEdit
+      Left = 102
+      Top = 60
+      Width = 121
+      Height = 23
+      Alignment = taCenter
+      NumbersOnly = True
+      TabOrder = 0
+    end
+  end
+end

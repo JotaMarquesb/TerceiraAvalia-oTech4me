@@ -1,0 +1,33 @@
+unit uDM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uGerenciadorContas;
+
+type
+  TDM = class(TDataModule)
+  public
+    Banco: TGerenciadorContas;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{$R *.dfm}
+
+procedure TDM.DataModuleCreate(Sender: TObject);
+begin
+  Banco := TGerenciadorContas.Create;
+end;
+
+procedure TDM.DataModuleDestroy(Sender: TObject);
+begin
+  Banco.Free;
+end;
+
+end.

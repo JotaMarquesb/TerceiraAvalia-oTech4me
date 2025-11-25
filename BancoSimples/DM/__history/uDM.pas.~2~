@@ -1,0 +1,37 @@
+unit uDM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uBancoController;
+
+type
+  TDM = class(TDataModule)
+  public
+    Banco: TBancoController;
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+constructor TDM.Create(AOwner: TComponent);
+begin
+  inherited;
+  Banco := TBancoController.Create;
+end;
+
+destructor TDM.Destroy;
+begin
+  Banco.Free;
+  inherited;
+end;
+
+end.

@@ -1,0 +1,66 @@
+unit uLogin;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  uContaBancaria, uDM, uCadastro, uTelaInicial, Vcl.ExtCtrls;
+
+type
+  TfmrLogin = class(TForm)
+    edtNumeroConta: TEdit;
+    btnAcessar: TButton;
+    lblNumeroConta: TLabel;
+    btnCadastrar: TButton;
+    lblCadastrar: TLabel;
+    lblMensagem: TLabel;
+    pnlSuperior: TPanel;
+    pnlInferior: TPanel;
+    procedure btnAcessarClick(Sender: TObject);
+    procedure btnCadastrarClick(Sender: TObject);
+  private
+  public
+  end;
+
+var
+  fmrLogin: TfmrLogin;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfmrLogin.btnAcessarClick(Sender: TObject);
+var
+  Conta: TContaBancaria;
+begin
+  if edtNumeroConta.Text = '' then
+  begin
+    lblMensagem.Caption := 'Digite o número da conta.';
+    Exit;
+  end;
+
+  Conta := DM.Banco.LoginConta(edtNumeroConta.Text);
+
+  if Conta = nil then
+  begin
+    lblMensagem.Caption := 'Conta não encontrada.';
+    Exit;
+  end;
+
+  frmTelaInicial.DefinirFormLogin(Self);
+  frmTelaInicial.DefinirConta(Conta);
+
+  frmTelaInicial.Show;
+
+  Self.Hide;
+end;
+
+procedure TfmrLogin.btnCadastrarClick(Sender: TObject);
+begin
+  frmCadastro.Show;
+  Self.Hide;
+end;
+
+end.
+

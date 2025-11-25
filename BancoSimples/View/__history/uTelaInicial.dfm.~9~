@@ -1,0 +1,86 @@
+object frmTelaInicial: TfrmTelaInicial
+  Left = 0
+  Top = 0
+  Caption = 'Dashboard'
+  ClientHeight = 401
+  ClientWidth = 320
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object lblMensagem: TLabel
+    Left = 30
+    Top = 230
+    Width = 66
+    Height = 15
+  end
+  object edtValor: TEdit
+    Left = 30
+    Top = 80
+    Width = 121
+    Height = 23
+    TabOrder = 0
+    Text = 'edtValor'
+  end
+  object btnDepositar: TButton
+    Left = 30
+    Top = 130
+    Width = 75
+    Height = 25
+    Caption = 'Depositar'
+    TabOrder = 1
+    OnClick = btnDepositarClick
+  end
+  object btnSacar: TButton
+    Left = 30
+    Top = 161
+    Width = 75
+    Height = 25
+    Caption = 'Sacar'
+    TabOrder = 2
+    OnClick = btnSacarClick
+  end
+  object btnSaldo: TButton
+    Left = 30
+    Top = 192
+    Width = 75
+    Height = 25
+    Caption = 'Saldo'
+    TabOrder = 3
+    OnClick = btnSaldoClick
+  end
+  object pnlSaudacao: TPanel
+    Left = 0
+    Top = 0
+    Width = 320
+    Height = 61
+    Align = alTop
+    TabOrder = 4
+    object lblSaudacao: TLabel
+      Left = 20
+      Top = 13
+      Width = 64
+      Height = 15
+      Caption = 'lblSaudacao'
+    end
+    object lblNumeroConta: TLabel
+      Left = 20
+      Top = 34
+      Width = 89
+      Height = 15
+      Caption = 'lblNumeroConta'
+    end
+  end
+  object pnlRodape: TPanel
+    Left = 0
+    Top = 360
+    Width = 320
+    Height = 41
+    Align = alBottom
+    TabOrder = 5
+    ExplicitTop = 350
+  end
+end

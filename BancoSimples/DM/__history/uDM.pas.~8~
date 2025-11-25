@@ -1,0 +1,21 @@
+unit uDM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uGerenciadorContas;
+
+type
+  TDM = class(TDataModule)
+  public
+    Banco: TGerenciadorContas;
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{$R *.dfm}
+
+end.
